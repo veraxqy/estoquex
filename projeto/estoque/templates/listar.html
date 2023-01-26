@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Listagem {% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+        <div class="card flex-fill">
+            <div class="card-header">
+
+                <h5 class="card-title mb-0">Listagem de Produtos</h5>
+            </div>
+            {% if produto %}
+                <table class="table table-hover my-0">
+                    <thead>
+                        <tr>
+                            <th>Cód. Produto</th>
+                            <th class="d-none d-xl-table-cell">Nome</th>
+                            <th class="d-none d-xl-table-cell">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produto in produto %}
+                            <tr>
+                                <td>{{ produto.id_produto }}</td>
+                                <td class="d-none d-xl-table-cell">{{ produto.nome_produto }}</td>
+                                <td class="d-none d-xl-table-cell">{{ produto.quantidade_produto }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>Não há produtos cadastrados</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} CRUD {% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+        <div class="card flex-fill">
+            {% if user.is_authenticated %}
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Listagem de Produtos</h5>
+                </div>
+                    {% if produto %}
+                        <table class="table table-hover my-0">
+                            <thead>
+                                <tr>
+                                    <th>Cód. Produto</th>
+                                    <th class="d-none d-xl-table-cell">Nome</th>
+                                    <th class="d-none d-xl-table-cell">Quantidade</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in produto %}
+                                    <tr>
+                                        <td>{{ produto.id_produto }}</td>
+                                        <td class="d-none d-xl-table-cell">{{ produto.nome_produto }}</td>
+                                        <td class="d-none d-xl-table-cell">{{ produto.quantidade_produto }}</td>
+                                        {% if user.is_authenticated %}
+                                            <th class="d-none d-xl-table-cell"><a href="{% url 'url_update_produto' produto.id_produto %}">Editar</a></th>
+                                            <th class="d-none d-xl-table-cell"><a href="{% url 'url_delete_produto' produto.id_produto %}">Deletar</a></th>
+                                        {% else %}
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                        <a href="{% url 'url_criar_produto' %}" class="btn btn-primary">Cadastrar Novo Produto</a>
+                    {% else %}
+                        <h2>Não há produtos cadastrados</h2>
+                        <a href="{% url 'url_criar_produto' %}" class="btn btn-primary">Cadastrar Novo Produto</a>
+                    {% endif %}
+            {% else %}
+            <div class="card-header">
+                <h4>Você precisa estar logado para acessar essas informações</h4>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

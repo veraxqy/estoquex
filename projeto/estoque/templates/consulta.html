@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Consulta {% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Consulta</h5>
+            </div>
+            <form action="{% url 'url_busca' %}" method="get">
+                <div class="card-body">
+                    <input name="busca" class="form-control" placeholder="Digite aqui">
+                </div>
+                &nbsp&nbsp
+                <div class="card-body">
+                    <button type="submit" class="btn btn-primary">Buscar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
